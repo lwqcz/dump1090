@@ -19,8 +19,13 @@ ifeq ($(DEB_HOST_ARCH),armhf)
   CPPFLAGS += -DSC16Q11_TABLE_BITS=8
 endif
 
+ifeq ($(DEB_HOST_ARCH), aarch64)
+  # Assume a Pine64-like target (is also no poor SBC), where using an 8-bit table is a fairly big win over the float path
+  CPPFLAGS += -DSC16Q11_TABLE_BITS=8
+endif
+
 override_dh_auto_build:
-	dh_auto_build -- RTLSDR=yes BLADERF=yes DUMP1090_VERSION=$(DEB_VERSION)
+	dh_auto_build -- RTLSDR=yes BLADERF=no DUMP1090_VERSION=$(DEB_VERSION)
 
 override_dh_install:
 	dh_install
