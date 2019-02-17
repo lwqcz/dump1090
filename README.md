@@ -6,21 +6,9 @@ customized for use within [FlightAware](http://flightaware.com)'s
 
 It is designed to build as a Debian package.
 
+**I do not need support for BladeRF, but I really need support for aarch64 architecture to use this SW on SBC like PineA64 or NanoPi, OrangePi and so on - basicaly Allwinner SoC's.**
+
 ## Building under jessie
-
-### Dependencies - bladeRF
-
-You will need a build of libbladeRF. You can build packages from source:
-
-$ git clone https://github.com/Nuand/bladeRF.git
-$ cd bladeRF
-$ dpkg-buildpackage -b
-
-Or Nuand has some build/install instructions including an Ubuntu PPA
-at https://github.com/Nuand/bladeRF/wiki/Getting-Started:-Linux
-
-Or FlightAware provides armhf packages as part of the piaware repository;
-see https://flightaware.com/adsb/piaware/install
 
 ### Dependencies - rtlsdr
 
@@ -28,7 +16,7 @@ This is packaged with jessie. "sudo apt-get install librtlsdr-dev"
 
 ### Actually building it
 
-Nothing special, just build it ("dpkg-buildpackage -b")
+Nothing special, just build it ("dpkg-buildpackage -b") in it's directory.
 
 ## Building under wheezy
 
@@ -42,9 +30,6 @@ The wheezy build does not include bladeRF support.
 You can probably just run "make" after installing the required dependencies.
 Binaries are built in the source directory; you will need to arrange to
 install them (and a method for starting them) yourself.
-
-"make BLADERF=no" will disable bladeRF support and remove the dependency on
-libbladeRF.
 
 "make RTLSDR=no" will disable rtl-sdr support and remove the dependency on
 librtlsdr.
